@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LoadingLayout">
+        <attr name="errorText" format="string" />
+        <attr name="emptyText" format="string" />
+        <attr name="lodingText" format="string" />
+        <attr name="errorBtnText" format="string" />
+
+        <attr name="pageType" format="enum" >
+            <enum name="error_page" value="0" />
+            <enum name="empty_page" value="1" />
+            <enum name="loading_page" value="2" />
+        </attr>
+
+        <attr name="errorTextSize" format="dimension" />
+        <attr name="emptyTextSize" format="dimension" />
+        <attr name="loadingTextSize" format="dimension" />
+        <attr name="errorBtnTextSize" format="dimension" />
+
+        <attr name="errorTextColor" format="color" />
+        <attr name="emptyTextColor" format="color" />
+        <attr name="loadingTextColor" format="color" />
+        <attr name="errorBtnTextColor" format="color" />
+
+        <attr name="errorImageSrc" format="reference" />
+        <attr name="emptyImageSrc" format="reference" />
+
+        <attr name="errorImageVisible" format="boolean" />
+        <attr name="emptyImageVisible" format="boolean" />
+
+        <attr name="errorImage_layout_width" format="dimension">
+            <enum name="fill_parent" value="-1" />
+            <enum name="match_parent" value="-1" />
+            <enum name="wrap_content" value="-2" />
+        </attr>
+
+        <attr name="errorImage_layout_height" format="dimension">
+            <enum name="fill_parent" value="-1" />
+            <enum name="match_parent" value="-1" />
+            <enum name="wrap_content" value="-2" />
+        </attr>
+
+
+    </declare-styleable>
+
+</resources>
