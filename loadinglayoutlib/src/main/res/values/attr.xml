@@ -41,6 +41,20 @@
             <enum name="wrap_content" value="-2" />
         </attr>
 
+        <attr name="emptyImage_layout_width" format="dimension">
+            <enum name="fill_parent" value="-1" />
+            <enum name="match_parent" value="-1" />
+            <enum name="wrap_content" value="-2" />
+        </attr>
+
+        <attr name="emptyImage_layout_height" format="dimension">
+            <enum name="fill_parent" value="-1" />
+            <enum name="match_parent" value="-1" />
+            <enum name="wrap_content" value="-2" />
+        </attr>
+
+
+
 
     </declare-styleable>
 
