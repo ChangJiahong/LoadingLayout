@@ -2,6 +2,7 @@ package com.demo.cjh.loadinglayout
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import com.demo.cjh.loadinglayoutlib.LoadingLayout
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btn2.setOnClickListener(this)
         btn3.setOnClickListener(this)
         btn4.setOnClickListener(this)
+        btn5.setOnClickListener(this)
 
         loadingProgress.setErrorClickListener {
             Toast.makeText(this,"重试了",Toast.LENGTH_LONG).show()
@@ -41,6 +43,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn4 ->{
                 loadingProgress.gone()
+            }
+            R.id.btn5 ->{
+                loadingProgress.state = LoadingLayout.define_Page
+                loadingProgress.setDefinePage(R.layout.define_layout)
+                loadingProgress.show()
+                //loadingProgress.show()
             }
         }
     }

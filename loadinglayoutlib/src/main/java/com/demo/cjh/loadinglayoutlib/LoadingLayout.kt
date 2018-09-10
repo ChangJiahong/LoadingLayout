@@ -44,7 +44,7 @@ class LoadingLayout: FrameLayout {
     /**
      * 自定义加载页面
      */
-    var defineLoadingPage: View? = null
+    private var defineLoadingPage: View? = null
 
 
     private var emptyStr: String? = "暂无数据"
@@ -222,23 +222,23 @@ class LoadingLayout: FrameLayout {
 
 
 
-        emptyImage.apply {
-            visibility = if(emptyImageVisible) View.VISIBLE else View.GONE
-            setImageResource(emptyImageId)
-            var params = layoutParams
+        emptyImage.also {
+            it.visibility = if(emptyImageVisible) View.VISIBLE else View.GONE
+            it.setImageResource(emptyImageId)
+            val params = it.layoutParams
             params.width = emptyImageWidth
             params.height = emptyImageHight
-            layoutParams = params
+            it.layoutParams = params
         }
 
 
-        errorImage.apply {
-            visibility = if(errorImageVisible) View.VISIBLE else View.GONE
-            setImageResource(errorImageId)
-            var params = layoutParams
+        errorImage.also {
+            it.visibility = if(errorImageVisible) View.VISIBLE else View.GONE
+            it.setImageResource(errorImageId)
+            val params = it.layoutParams
             params.width = errorImageWidth
             params.height = errorImageHight
-            layoutParams = params
+            it.layoutParams = params
 
         }
 
@@ -268,6 +268,22 @@ class LoadingLayout: FrameLayout {
             onClick(it)
         }
     }
+
+    fun setDefinePage(id: Int){
+        val view = LayoutInflater.from(mContext).inflate(id, null)
+        setDefinePage(view)
+    }
+
+    fun setDefinePage(v: View){
+        if(defineLoadingPage != null){
+            this.removeView(defineLoadingPage)
+        }
+        defineLoadingPage = v
+        defineLoadingPage?.visibility = View.GONE
+        this.addView(defineLoadingPage)
+    }
+
+    fun getDefinePage() = defineLoadingPage
 
     fun show(){
         when(state){
