@@ -147,6 +147,8 @@ class LoadingLayout: FrameLayout {
         errorImageWidth = a.getLayoutDimension(R.styleable.LoadingLayout_errorImage_layout_width,-2)
         errorImageHight = a.getLayoutDimension(R.styleable.LoadingLayout_errorImage_layout_height,-2)
 
+        emptyImageWidth = a.getLayoutDimension(R.styleable.LoadingLayout_emptyImage_layout_width,-2)
+        emptyImageHight = a.getLayoutDimension(R.styleable.LoadingLayout_emptyImage_layout_height,-2)
 
         Log.v(TAG,""+state)
         Log.v(TAG, errorImageId.toString())
