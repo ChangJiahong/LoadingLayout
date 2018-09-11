@@ -10,7 +10,7 @@ LoadingLayout TestDemo
 ![GIF](https://cjh.pythong.top/2018/09/10/LoadingLayout/GIF.gif)
 
 ## 使用方法
-![](https://jitpack.io/v/ChangJiahong/LoadingLayout.svg)(https://jitpack.io/#ChangJiahong/LoadingLayout)
+[![](https://jitpack.io/v/ChangJiahong/LoadingLayout.svg)](https://jitpack.io/#ChangJiahong/LoadingLayout)
 ### 1. 将其添加到你的项目的build.gradle中：
 
 ```
