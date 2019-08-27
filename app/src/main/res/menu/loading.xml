@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/loading"
+        android:title="加载页" />
+    <item
+        android:id="@+id/error"
+        android:title="错误页" />
+    <item
+        android:id="@+id/empty"
+        android:title="空页面" />
+    <item
+        android:id="@+id/content"
+        android:title="内容页" />
+    <item
+        android:id="@+id/define"
+        android:title="自定义页" />
+</menu>

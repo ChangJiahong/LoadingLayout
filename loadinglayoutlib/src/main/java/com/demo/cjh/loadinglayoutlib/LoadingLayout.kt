@@ -16,11 +16,12 @@ import android.view.ViewGroup
 import android.widget.*
 
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 /**
  * Created by CJH
  * on 2018/9/8
  */
+@Deprecated("外部加载页面，不建议使用，随时可能删除；推荐使用InternalLoadingLayout页面")
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class LoadingLayout: FrameLayout {
     val TAG = "LoadingLayout"
 
