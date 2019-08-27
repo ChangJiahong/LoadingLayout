@@ -20,7 +20,7 @@ allprojects {
 			...
 			maven { url 'https://jitpack.io' }
 		}
-	}
+}
 ```
 
 ### 2. 在APP build.gradle中添加依赖
@@ -28,7 +28,7 @@ allprojects {
 ```
 dependencies {
 		 implementation 'com.github.ChangJiahong:LoadingLayout:v0.2.0'
-	}
+}
 ```
 
 
