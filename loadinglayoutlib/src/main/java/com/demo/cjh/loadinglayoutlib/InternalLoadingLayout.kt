@@ -14,7 +14,7 @@ import com.cjh.asdevtools.ex.TooManyChildViewException
  * @author ChangJiahong
  * @date 2019/8/27
  */
-class InternalLoadingLayout: FrameLayout {
+class InternalLoadingLayout : FrameLayout {
 
     private var mContext: Context
 
@@ -54,6 +54,7 @@ class InternalLoadingLayout: FrameLayout {
      * 自定义页面
      */
     var definePage: View? = null
+        private set
 
     /**
      * 内容页面
@@ -89,18 +90,18 @@ class InternalLoadingLayout: FrameLayout {
 
     private lateinit var loadingMsg: TextView
 
-    constructor(context: Context,attributeSet: AttributeSet):super(context,attributeSet){
+    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
         this.mContext = context
 
 
     }
 
-    constructor(context: Context,attributeSet: AttributeSet,defStyleAttr: Int):super(context,attributeSet,defStyleAttr){
+    constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int) : super(context, attributeSet, defStyleAttr) {
         this.mContext = context
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int = 0, defStyleRes: Int = 0):super(context,attributeSet,defStyleAttr,defStyleRes){
+    constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int = 0, defStyleRes: Int = 0) : super(context, attributeSet, defStyleAttr, defStyleRes) {
         this.mContext = context
     }
 
@@ -116,11 +117,11 @@ class InternalLoadingLayout: FrameLayout {
      * 加载
      */
     private fun init() {
-        if (childCount > 1){
+        if (childCount > 1) {
             throw TooManyChildViewException("childCount must be <= 1 ")
         }
         // 内容页面
-        if (childCount>0)
+        if (childCount > 0)
             contentPage = getChildAt(0)
 
 
@@ -133,7 +134,7 @@ class InternalLoadingLayout: FrameLayout {
     /**
      * 设置errorImg ImageView
      */
-    fun errorImg(set: (v: ImageView)->Unit){
+    fun errorImg(set: (v: ImageView) -> Unit) {
         // 配置前先加载控件
         initErrorP()
         errorImgV.apply(set)
@@ -142,7 +143,7 @@ class InternalLoadingLayout: FrameLayout {
     /**
      * 设置errorMsg TextView
      */
-    fun errorMsg(set: (v: TextView) -> Unit){
+    fun errorMsg(set: (v: TextView) -> Unit) {
         // 配置前先加载控件
         initErrorP()
         errorMsgV.apply(set)
@@ -151,7 +152,7 @@ class InternalLoadingLayout: FrameLayout {
     /**
      * 设置errorBtn Button
      */
-    fun errorBtn(set: (v: Button) -> Unit){
+    fun errorBtn(set: (v: Button) -> Unit) {
         // 配置前先加载控件
         initErrorP()
         errorBtn.apply(set)
@@ -160,7 +161,7 @@ class InternalLoadingLayout: FrameLayout {
     /**
      * 设置errorBtn ClickListener
      */
-    fun setErrorClickListener( onClick:(v: View) -> Unit){
+    fun setErrorClickListener(onClick: (v: View) -> Unit) {
         errorBtn.setOnClickListener {
             onClick(it)
         }
@@ -169,7 +170,7 @@ class InternalLoadingLayout: FrameLayout {
     /**
      * 设置emptyImg ImageView
      */
-    fun emptyImg(set: (v: ImageView) -> Unit){
+    fun emptyImg(set: (v: ImageView) -> Unit) {
         // 配置前先加载控件
         initEmptyP()
         emptyImg.apply(set)
@@ -178,7 +179,7 @@ class InternalLoadingLayout: FrameLayout {
     /**
      * 设置emptyMsg TextView
      */
-    fun emptyMsg(set: (v: TextView) -> Unit){
+    fun emptyMsg(set: (v: TextView) -> Unit) {
         // 配置前先加载控件
         initEmptyP()
         emptyMsg.apply(set)
@@ -187,7 +188,7 @@ class InternalLoadingLayout: FrameLayout {
     /**
      * 设置loadingProgress ProgressBar
      */
-    fun loadingProgress(set: (v: ProgressBar) -> Unit){
+    fun loadingProgress(set: (v: ProgressBar) -> Unit) {
         // 配置前先加载控件
         initLoadingP()
         loadingProgress.apply(set)
@@ -196,10 +197,18 @@ class InternalLoadingLayout: FrameLayout {
     /**
      * 设置loadingMsg TextView
      */
-    fun loadingMsg(set: (v: TextView) -> Unit){
+    fun loadingMsg(set: (v: TextView) -> Unit) {
         // 配置前先加载控件
         initLoadingP()
         loadingMsg.apply(set)
+    }
+
+    fun initDefinePage(definePage: () -> View) {
+        if (this.definePage != null) {
+            this.removeView(this.definePage)
+        }
+        this.definePage = definePage()
+        this.addView(this.definePage)
     }
 
     /**
@@ -207,7 +216,7 @@ class InternalLoadingLayout: FrameLayout {
      * @param id 页面id
      * @param isHideContent 表示显示自定义页面时是否需要隐藏内容
      */
-    fun showDefinePage(id: Int,isHideContent: Boolean = false){
+    fun showDefinePage(id: Int, isHideContent: Boolean = false) {
         if (this.definePage != null) {
             this.removeView(definePage)
         }
@@ -215,7 +224,7 @@ class InternalLoadingLayout: FrameLayout {
         this.definePage = this.inflater.inflate(id, null)
         addView(definePage)
 
-        this.show(definePage!!,isHideContent)
+        this.show(definePage!!, isHideContent)
     }
 
     /**
@@ -231,9 +240,9 @@ class InternalLoadingLayout: FrameLayout {
      * 显示错误页面
      * @param isHideContent 表示显示该页面时是否需要隐藏内容
      */
-    fun showError(isHideContent: Boolean = false){
+    fun showError(isHideContent: Boolean = false) {
         initErrorP()
-        this.show(errorPage,isHideContent)
+        this.show(errorPage, isHideContent)
     }
 
     /**
@@ -256,9 +265,9 @@ class InternalLoadingLayout: FrameLayout {
      * 显示空页面
      * @param isHideContent 表示显示该页面时是否需要隐藏内容
      */
-    fun showEmpty(isHideContent: Boolean = false){
+    fun showEmpty(isHideContent: Boolean = false) {
         initEmptyP()
-        this.show(emptyPage,isHideContent)
+        this.show(emptyPage, isHideContent)
     }
 
     /**
@@ -278,9 +287,9 @@ class InternalLoadingLayout: FrameLayout {
      * 显示加载页面
      * @param isHideContent 表示显示该页面时是否需要隐藏内容
      */
-    fun showLoading(isHideContent: Boolean = false){
+    fun showLoading(isHideContent: Boolean = false) {
         initLoadingP()
-        this.show(loadingPage,isHideContent)
+        this.show(loadingPage, isHideContent)
     }
 
     /**
@@ -300,11 +309,11 @@ class InternalLoadingLayout: FrameLayout {
      * 显示自定义页面
      * @param isHideContent 表示显示该页面时是否需要隐藏内容
      */
-    fun showDefinePage(isHideContent: Boolean = false){
-        if (definePage == null){
+    fun showDefinePage(isHideContent: Boolean = false) {
+        if (definePage == null) {
             throw NullPointerException("definePage cannot be empty")
         }
-        this.show(definePage!!,isHideContent)
+        this.show(definePage!!, isHideContent)
     }
 
     /**
@@ -312,8 +321,8 @@ class InternalLoadingLayout: FrameLayout {
      * @param v 显示的页面
      * @param isHideContent 表示显示该页面时是否需要隐藏内容
      */
-    private fun show(v: View, isHideContent: Boolean){
-        if (contentPage!=null) {
+    private fun show(v: View, isHideContent: Boolean) {
+        if (contentPage != null) {
             if (isHideContent) {
                 hideV(contentPage!!)
             } else {
@@ -327,7 +336,7 @@ class InternalLoadingLayout: FrameLayout {
      * 设置view的显示属性
      * @param v
      */
-    private fun showV(v: View){
+    private fun showV(v: View) {
         this.hide()
         v.visibility = View.VISIBLE
     }
@@ -337,7 +346,7 @@ class InternalLoadingLayout: FrameLayout {
      * 隐藏除contentPage的所有Page
      */
     private fun hide() {
-        for (i in 0 until childCount){
+        for (i in 0 until childCount) {
             val v = getChildAt(i)
             if (v != contentPage) {
                 hideV(v)
@@ -349,7 +358,7 @@ class InternalLoadingLayout: FrameLayout {
      * 设置view的显示属性
      * @param v View
      */
-    private fun hideV(v: View){
+    private fun hideV(v: View) {
         v.visibility = View.GONE
     }
 
